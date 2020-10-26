@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/fragments.html :: head"></head>
+<body>
+    <header th:replace="fragments/fragments.html :: header"></header>
+    <div class="form-container">
+        <form th:action="@{/login}" method="post">
+            <input type="text" name="username" placeholder="Email">
+            <input type="password" name="password" placeholder="Password">
+            <input type="submit" value="Log In">
+        </form>
+        <div th:replace="fragments/fragments.html :: social-login"></div>
+    </div>
+</body>
+<footer th:replace="fragments/fragments.html :: footer"></footer>
+</html>

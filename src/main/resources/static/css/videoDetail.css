@@ -1,0 +1,51 @@
+.comment-container {
+    margin: auto;
+    max-width: 840px;
+}
+
+.comment-container__input #newCommentWriter {
+    max-width: none;
+}
+
+.comment-container__input .comment-container__input-button {
+    width: fit-content;
+    margin-left: 730px;
+}
+
+/* .comment-container__input #commentAddBtn {
+  width: fit-content;
+} */
+
+.comment-container > .comment-container__input,
+.comment-container__timeline {
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 50px;
+}
+
+.comment-container video__comment-number {
+    font-size: large;
+}
+
+.comment-container #commentList {
+    margin-top: 10px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+#comment-modify-button {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#comment-modify-button .badge {
+    margin-right: 3px;
+}
+
+.comment-container__timeline > .pagination {
+    margin-top: 20px;
+}

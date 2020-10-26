@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/fragments.html :: head"></head>
+<body>
+    <header th:replace="fragments/fragments.html :: header"></header>
+    <div class="form-container">
+        <form th:object="${memberJoinForm}" th:action="@{/join}" method="post">
+            <input type="email" th:field="*{email}" name="email" placeholder="Email">
+            <small class="form-text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+            <input type="text" th:field="*{name}" name="name" placeholder="Full Name">
+            <small class="form-text text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name</small>
+            <input type="password" th:field="*{password}" name="password" placeholder="Password" autocomplete="on">
+            <small class="form-text text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
+            <input type="password" th:field="*{password2}" name="password2" placeholder="Verify Password" autocomplete="on">
+            <input type="submit" value="Join Now">
+        </form>
+        <div th:replace="fragments/fragments.html :: social-login"></div>
+    </div>
+</body>
+<footer th:replace="fragments/fragments.html :: footer"></footer>
+</html>

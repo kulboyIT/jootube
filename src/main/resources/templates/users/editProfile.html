@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/fragments.html :: head"></head>
+<body>
+<header th:replace="fragments/fragments.html :: header"></header>
+<div class="form-container">
+    <form th:object="${memberUpdateForm}" th:action="@{/members/edit-profile}" method="post"
+          enctype="multipart/form-data">
+        <div class="fileUpload">
+            <label for="avatar">Avatar</label>
+            <input type="file" th:field="*{multipartImageProfile}" id="avatar" accept="image/*">
+        </div>
+        <input type="text" placeholder="Name" name="name" th:field="*{name}">
+        <small class="form-text text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name</small>
+        <input type="submit" value="Update Profile">
+    </form>
+</div>
+</body>
+<footer th:replace="fragments/fragments.html :: footer"></footer>
+</html>

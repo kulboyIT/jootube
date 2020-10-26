@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/fragments.html :: head"></head>
+<body>
+<header th:replace="fragments/fragments.html :: header"></header>
+<div class="user-profile">
+    <div class="user-profile__header">
+        <svg th:if="${#strings.isEmpty(member.profileImage)}" class="avatar"
+             th:data-jdenticon-value="${member.name}" width="125" height="125"></svg>
+        <img th:if="${!#strings.isEmpty(member.profileImage)}"
+             th:src="${member.profileImage}" class="avatar" width="125" height="125">
+        <h4 class="profile__username" th:text="${member.name}"></h4>
+    </div>
+    <div th:if="${isOwner}" class="user-profile__btns">
+        <a href="/members/edit-profile">
+            <button>✏️ Edit Profile</button>
+        </a>
+        <a href="/members/change-email">
+            <button>️📠 Change Email</button>
+        </a>
+        <a href="/members/change-password">
+            <button>🔒 Change Password</button>
+        </a>
+    </div>
+    <div class="home-videos">
+        <div th:each="video : ${memberReadForm.videos}">
+            <a th:href="@{'/videos/' + ${video.id}}">
+                <video th:src="@{'file:///Users/joohyuk/Movies/' + ${video.saveFileName}}" class="videoBlock__thumbnail" controls="false"></video>
+                <h4 class="videoBlock__title" th:text="${video.title}"></h4>
+                <h6 th:if="${video.views == 1}" class="videoBlock__views" th:text="${video.views + ' view'}"></h6>
+                <h6 th:if="${video.views > 1}" class="videoBlock__views" th:text="${video.views + ' views'}"></h6>
+            </a>
+
+        </div>
+    </div>
+</div>
+</body>
+<footer th:replace="fragments/fragments.html :: footer"></footer>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <title th:text="${pageTitle}">WeTube</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/videoDetail.css">
+    <!-- favicon.ico 404 (Not Found) -->
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <script src="/js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jdenticon@3.0.1" async></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js" integrity="sha512-LGXaggshOkD/at6PFNcp2V2unf9LzFq6LE+sChH7ceMTDP0g2kn6Vxwgg7wkPP7AAtX+lmPqPdxB47A0Nz0cMQ==" crossorigin="anonymous"></script>
+
+    <meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
+    <!-- default header name is X-CSRF-TOKEN -->
+    <meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
+
+</head>
+<header th:fragment="header" class="header">
+    <div class="header__wrapper">
+        <div class="header__column">
+            <a th:href="@{/}">
+                <i class="fab fa-youtube"></i>
+            </a>
+        </div>
+        <div class="header__column">
+            <form th:action="@{/search}" method="get">
+                <input type="text" placeholder="Search by term..." name="keyword">
+            </form>
+        </div>
+        <div class="header__column">
+            <ul sec:authorize="!isAuthenticated()">
+                <li><a th:href="@{/join}" class="header__column-link">Join</a></li>
+                <li>
+                    <a th:href="@{/login}" class="header__column-link">Log In</a>
+                </li>
+            </ul>
+            <ul sec:authorize="isAuthenticated()">
+                <li>
+                    <a th:href="@{/videos/upload}" class="header__column-link">Upload</a>
+                </li>
+                <li>
+                    <a th:href="@{'/members/profile/' + ${member.name}}" class="header__column-link">Profile</a>
+                </li>
+                <li>
+                    <a th:href="@{'/logout'}" class="header__column-link">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<div th:fragment="message" th:if="${message}" class="alert alert-info alert-dismissible fade show mt-3" style="width: 100%" role="alert">
+    <span th:text="${message}">완료</span>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<footer th:fragment="footer" class="footer">
+    <div class="footer__icon">
+        <i class="fab fa-youtube"></i>
+    </div>
+    <span class="footer__text">WeTube 2020 &copy;</span>
+</footer>
+
+
+<div th:fragment="social-login" class="social-login">
+<!--    <a th:href="@{/login/github}">-->
+<!--        <button class="social-login&#45;&#45;github">-->
+<!--            <span>-->
+<!--                <i class="fab fa-github"></i>-->
+<!--                Continue with Github-->
+<!--            </span>-->
+<!--        </button>-->
+<!--    </a>-->
+<!--    <button class="social-login&#45;&#45;facebook">-->
+<!--        <a th:href="@{/auth/facebook}">-->
+<!--            <span>-->
+<!--                <i class="fab fa-facebook-square"></i>-->
+<!--                Continue with Github-->
+<!--            </span>-->
+<!--        </a>-->
+<!--    </button>-->
+</div>
+</html>

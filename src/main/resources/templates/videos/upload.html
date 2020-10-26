@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/fragments.html :: head"></head>
+<body>
+<header th:replace="fragments/fragments.html :: header"></header>
+<div class="form-container">
+    <div class="record-container" id="jsRecordContainer">
+        <video id="jsVideoPreview"></video>
+        <button id="jsRecordBtn">Start Recording</button>
+    </div>
+    <form th:object="${videoUploadForm}" th:action="@{/videos/upload}" method="post" enctype="multipart/form-data">
+        <div class="fileUpload">
+            <label for="file">Video File</label>
+            <input type="file" th:field="*{file}" id="file" name="file" accept="video/*" required="true">
+        </div>
+        <input type="text" th:field="*{title}" placeholder="Title" name="title">
+        <textarea name="description" th:field="*{description}" placeholder="Description"></textarea>
+        <input type="submit" value="Upload Video">
+    </form>
+</div>
+</body>
+<footer th:replace="fragments/fragments.html :: footer"></footer>
+<script src="/js/videoRecorder.js"></script>
+</html>

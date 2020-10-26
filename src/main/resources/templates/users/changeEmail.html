@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/fragments.html :: head"></head>
+<body>
+<header th:replace="fragments/fragments.html :: header"></header>
+<div class="form-container">
+    <form th:object="${changeEmailForm}" th:action="@{/members/change-email}" method="post">
+        <input type="email" th:field="*{email}" placeholder="New Email">
+        <small class="form-text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">email</small>
+        <input type="submit" value="Change Password">
+    </form>
+</div>
+</body>
+<footer th:replace="fragments/fragments.html :: footer"></footer>
+</html>
